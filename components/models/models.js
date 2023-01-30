@@ -1,0 +1,1 @@
+import scene from '../../components/scene/SceneSetup';
