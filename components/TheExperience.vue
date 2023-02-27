@@ -15,6 +15,7 @@ import scene from './scene/SceneSetup';
 import './obj/spheres.js';
 import './lights/lights.js';
 import "./models/models.js";
+import "./obj/geometry.js";
 
 let renderer: WebGLRenderer
 let controls: OrbitControls
@@ -42,9 +43,9 @@ scene.add(ambientLight)
 const { load } = useGLTFModel()
 
 // const { scene: model } = await load('/nuxty/nuxty.gltf')
-const { scene: model } = await load('/head/adamHead.gltf')
+// const { scene: model } = await load('/head/adamHead.gltf')
 
-scene.add(model)
+// scene.add(model)
 
 function updateCamera() {
   camera.aspect = aspectRatio.value
@@ -58,7 +59,11 @@ function updateRenderer() {
 
 function setRenderer() {
   if (experience.value) {
-    renderer = new WebGLRenderer({ canvas: experience.value, alpha: true })
+    renderer = new WebGLRenderer({ 
+      canvas: experience.value,
+      alpha: true,
+      antialias: true 
+    });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
